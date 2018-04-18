@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>EJS Welcome to
+    <%= title %>
+  </p>
+  <form action="/user">
+    <label for="username">username</label>
+    <input type="text" id="username" name="name" value="孙天文">
+    <input type="submit" value="提交">
+    <button type="button" id="btn">ajax 异步提交</button>
+  </form>
+  <script>
+    var btn = $('#btn');
+    var username = $('#username').val();
+    btn.on('click', function () {
+      $.ajax({
+        url: "/user?name=" + username, success: function (result) {
+          alert(JSON.stringify(result));
+        }
+      });
+    })
+  </script>
+</body>
+
+</html>
